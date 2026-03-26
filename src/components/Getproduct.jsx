@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Carousel from './Carousel'
+import Footer from './Footer'
 
 
 const Getproduct = () => {
@@ -48,14 +49,16 @@ const Getproduct = () => {
               <b style={{color:"#349691ff"}}>Kshs {singleproduct.product_cost}</b><br />
               <button className='btn btn-info w-100' onClick={() => navigate("/makepayment",{state:{singleproduct}})}>Purchase Now</button>
 
-              
+               
               </div>
+              
             </div>
-
+          
 
           </div>
-        </div>
+        </div> 
       ))}
+      <Footer/>
     </div>
     
   )

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import Footer from "./Footer"
 
 const Addproduct = () => {
   // declare the states here 
@@ -57,6 +58,7 @@ const Addproduct = () => {
 
         </form>
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
+import Footer from './Footer'
 
 const Signin = () => {
   // define the 2 states to sign in 
@@ -32,7 +33,7 @@ const Signin = () => {
   }
   }
   return (
-    <div className='row mt-1 justify-content-center '>
+    <div className='row mt-1 justify-content-center p-4 pb-4 '>
       <div className=" card card-shadow col-md-6 p-4"style={{backgroundColor:"lemonchiffon"}}>
         <h2 className='text-center'>Sign in</h2>
         {/* bind the states  */}
@@ -46,7 +47,7 @@ const Signin = () => {
         </form>
         <p className='text-center'>Don't have an account?<Link to="/Signup"> Sign up</Link></p>
       </div>
-
+      <Footer/>
     </div>
 
   )

@@ -5,8 +5,8 @@ const Navbar = () => {
         <section class="row">
             <div class="col-md-12">
                 {/* <!-- a nav with the navbar content  --> */}
-                <nav class="navbar  navbar-expand-md " style={{ backgroundColor: "#349691ff" }}>
-                    <a href="" class="navbar-brand   " style={{ color: "lemonchiffon" }}>Accessory Emporium</a>
+                <nav class="navbar  navbar-expand-md " style={{ backgroundColor: "#186161" }}>
+                    <a href="navbar" class="navbar-brand   " style={{ color: "lemonchiffon" }}>Accessory Emporium</a>
                     <button class=" navbar-toggler" data-bs-target="#navbarcollapse" data-bs-toggle="collapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>

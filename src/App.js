@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
 import Addproduct from './components/Addproduct';
@@ -19,6 +19,7 @@ function App() {
       <header className="App-header">
      <h1 style={{color:"lemonchiffon"}}>Welcome to Accessory Emporium</h1>
       </header>
+      
       {/* <nav style={{padding:"4", alignSelf:"center"}}>
         <Link to="/"  className='btn btn-info m-1'>Get products</Link>
         <Link to="/signup"  className='btn btn-info m-1 text-center'>Signup</Link>

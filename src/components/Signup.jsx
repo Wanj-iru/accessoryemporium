@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Footer from './Footer'
 
 const Signup = () => {
   // declare the states here 
@@ -54,6 +55,7 @@ const Signup = () => {
         <p className='text-center'>Already have an account?<Link to="/Signin">Sign in</Link></p>
 
       </div>
+      <Footer/>
     </div>
   )
 }
