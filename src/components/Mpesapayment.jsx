@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Footer from './Footer'
+import Prefooter from './Prefooter'
 const Mpesapayment = () => {
   const {singleproduct}= useLocation().state||{}
   const imagepath = "http://joysylviambuni.alwaysdata.net/static/images/"
@@ -51,6 +52,7 @@ const Mpesapayment = () => {
           <button type='submit' className='btn btn-info w-100'>Make Payment</button>
         </form>
       </div>
+      <Prefooter/>
       <Footer/>
     </div>
   )

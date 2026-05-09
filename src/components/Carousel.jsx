@@ -63,10 +63,11 @@ const Carousel = () => {
 
                 {/* <!-- Easter Offer --> */}
                 <div class="floating-box text-center p-3 m-2" style={{backgroundColor:"  #134745"}}>
-                    <h1 class="text-center " style={{color:"pink"}}>Easter offer!!!</h1>
+                    <h1 class="text-center " style={{color:"pink"}}>Mother's Day offer!!!</h1>
                     <p class="text-center"style={{color:"bisque"}}>We have very many special offers for anyone looking for a gift to commemorate
-                        the day. Make them feel special with our special pieces on that special day!Celebrate Easter in style!</p>
-                    <span class="btn bg-info text-white text-center">Shop NOW!</span>
+                        the day. Make them feel special with our special pieces on that special day!Celebrate Mother's day in style!</p>
+                        <a href="/category/women">
+                    <span class="btn bg-info text-white text-center ">Shop NOW!</span></a>
                 </div>
             
         </section>

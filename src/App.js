@@ -9,6 +9,17 @@ import Addproduct from './components/Addproduct';
 import Getproduct from './components/Getproduct';
 import Mpesapayment from './components/Mpesapayment';
 import  Navbar  from './components/Navbar';
+import Home from './components/Home';
+import Customize from './components/Customize'
+import Chatbot from './components/Chatbot';
+import Reviews from './components/Reviews';
+import Cart from './components/Cart';
+import Wishlist from './components/Wishlist';
+import CategoryPage from './components/Categories';
+
+
+// import Customize from './components/Customize';
+// import prefooter from './components/Prefooter';
 
 function App() {
   return (
@@ -32,6 +43,24 @@ function App() {
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/addproduct' element={<Addproduct/>}/>
         <Route path='/makepayment' element={<Mpesapayment/>}/>
+        <Route path='/home' element={<Home/>}/>
+        <Route path='/customize' element={<Customize/>}/>
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/category/:categoryName"element={<CategoryPage />} />
+        
+
+        
+         {/* <Route path="/home" element={<Home onAddToCart={addToCart} onAddToWishlist={addToWishlist} />} />
+        <Route path="/cart" element={<CartPage cart={cart} />} />
+        <Route path="/wishlist" element={<WishlistPage wishlist={wishlist} />} /> */}
+     
+    
+        
+        
+       
+       
         
       </Routes>
     </div>
