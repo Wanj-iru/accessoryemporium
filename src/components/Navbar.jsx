@@ -13,7 +13,7 @@
 //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 //     const loggedInUser = JSON.parse(localStorage.getItem('user'));
-    
+
 //     setCartCount(cart.length);
 //     setWishlistCount(wishlist.length);
 //     setUser(loggedInUser);
@@ -58,7 +58,7 @@
 //             <li className="nav-item">
 //               <Link className="nav-link fw-bold text-dark" to="/">Available Products</Link>
 //             </li>
-            
+
 //              <li className="nav-item">
 //               <Link className="nav-link fw-bold text-dark" to="/customize">Customize Your piece</Link>
 //             </li>
@@ -150,17 +150,22 @@ const Navbar = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     const loggedInUser = JSON.parse(localStorage.getItem('user'));
-    
+
     setCartCount(cart.length);
     setWishlistCount(wishlist.length);
     setUser(loggedInUser);
   };
 
   useEffect(() => {
-    updateNavbar();
+    let user = JSON.parse(localStorage.getItem("user"))
+    setUser(user)
+  })
+
+  useEffect(() => {
+    // updateNavbar();
     // Listen for storage events (triggered by login/logout in other components)
-    window.addEventListener('storage', updateNavbar);
-    return () => window.removeEventListener('storage', updateNavbar);
+    // window.addEventListener('storage', updateNavbar);
+    // return () => window.removeEventListener('storage', updateNavbar);
   }, []);
 
   // Logout Function
@@ -168,7 +173,7 @@ const Navbar = () => {
     if (window.confirm("Are you sure you want to log out?")) {
       localStorage.removeItem('user');
       // Optional: localStorage.removeItem('token'); 
-      updateNavbar(); 
+      // updateNavbar();
       navigate('/signin');
     }
   };
@@ -200,7 +205,7 @@ const Navbar = () => {
             </li>
 
             {/* Only show Add Product if user is logged in */}
-            {user && (
+            {user && user.role === "admin" && (
               <li className="nav-item">
                 <Link className="nav-link fw-bold text-dark" to="/addproduct">Add Product</Link>
               </li>

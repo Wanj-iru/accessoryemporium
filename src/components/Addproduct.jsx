@@ -119,7 +119,10 @@ const Addproduct = () => {
             </div>
             <div className="mb-3">
               <label className="fw-bold mb-1" style={{ color: "teal" }}>Category </label>
-              <input type="radio" className="form-control border-0 shadow-sm " rows="2" value={category} onChange={(e) => setCategory(e.target.value)} required placeholder="Category" />
+              <input type="text" className="form-control border-0 shadow-sm " rows="2" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Can either be men,women,traditional or aesthetic "/> 
+              
+              
+
             </div>
 
             <button type="submit" disabled={!!loading} className="btn w-100 fw-bold py-2 shadow-sm text-white" style={{ backgroundColor: "teal", borderRadius: "10px" }}>
