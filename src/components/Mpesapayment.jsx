@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import Prefooter from './Prefooter'
+import Columnfooter from './Columnfooter'
 const Mpesapayment = () => {
   const {singleproduct}= useLocation().state||{}
   const imagepath = "http://joysylviambuni.alwaysdata.net/static/images/"
@@ -54,6 +55,7 @@ const Mpesapayment = () => {
       </div>
       <Prefooter/>
       <Footer/>
+      <Columnfooter/>
     </div>
   )
 }

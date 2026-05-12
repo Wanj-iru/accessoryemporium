@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Star, MessageSquare, User, Quote } from 'lucide-react';
+import React, { useState } from 'react';
+import { Star, MessageSquare,  Quote } from 'lucide-react';
 import Footer from './Footer';
 import Prefooter from './Prefooter';
+import Columnfooter from './Columnfooter';
 
 const Reviews = () => {
   // Mock data - In a real app, you'd fetch this from your Flask API
@@ -115,6 +116,7 @@ const Reviews = () => {
 
       <Prefooter />
       <Footer />
+      <Columnfooter/>
     </div>
   );
 };

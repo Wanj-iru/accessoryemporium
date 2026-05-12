@@ -11,7 +11,7 @@ import Mpesapayment from './components/Mpesapayment';
 import  Navbar  from './components/Navbar';
 import Home from './components/Home';
 import Customize from './components/Customize'
-import Chatbot from './components/Chatbot';
+
 import Reviews from './components/Reviews';
 import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';

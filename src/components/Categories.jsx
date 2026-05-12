@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ShoppingCart, Heart, ChevronRight, Info } from 'lucide-react';
 import Prefooter from './Prefooter';
 import Footer from './Footer';
+import Columnfooter from './Columnfooter';
 
 const CategoryPage = () => {
   const { categoryName } = useParams(); // Retrieves category from URL (e.g., /category/Men)
@@ -117,6 +118,7 @@ const CategoryPage = () => {
 
       <Prefooter />
       <Footer />
+      <Columnfooter/>
     </div>
   );
 };

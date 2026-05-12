@@ -23,7 +23,7 @@ const CarouselCard = () => {
   ];
 
   return (
-    <div className="card" style={{ width: "600px", border: "1px solid #ccc", borderRadius: "8px", overflow: "hidden",height:"250px" }}>
+    <div className="card" style={{ width: "550px", border: "1px solid #ccc", borderRadius: "8px", overflow: "hidden",height:"250px" }}>
       {/* Carousel Section */}
       <Slider {...settings}>
         {images.map((img, index) => (

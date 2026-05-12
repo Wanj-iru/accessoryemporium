@@ -2,13 +2,15 @@ import axios from "axios"
 import { useState } from "react"
 import Footer from "./Footer"
 import Prefooter from "./Prefooter"
+import Columnfooter from "./Columnfooter"
 
 const Customize = () => {
   // declare the states here 
  
-  const [product_description, setProductDescription] = useState("")
+  const [description, setDescription] = useState("")
   
-  const [product_photo, setProductPhoto] = useState("")
+  const [photo, setPhoto] = useState("")
+    const [phone_number, setPhone_number] = useState("")
 
   // define three states for posting data 
   const [loading, setLoading] = useState("")
@@ -22,12 +24,13 @@ const Customize = () => {
     //  Create a digital envelope 
     const formdata = new FormData()
     
-    formdata.append("product_description", product_description)
+    formdata.append("description", description)
     
-    formdata.append("product_photo", product_photo)
+    formdata.append("photo", photo)
+    formdata.append("phone_number", phone_number)
 
     try {
-      const response = await axios.post("http://joysylviambuni.alwaysdata.net/api/addproduct", formdata)
+      const response = await axios.post("http://joysylviambuni.alwaysdata.net/api/customize", formdata)
       setSuccess(response.data.message)
       setLoading("")
     } catch (error) {
@@ -49,17 +52,18 @@ const Customize = () => {
         <form action="" onSubmit={handlesubmit} style={{minHeight:100, }}>
          
           <label htmlFor="">Phone Number</label>
-          <input type="phone" className='form-control ' onChange={(e) => setProductDescription(e.target.value)} /><br />
+          <input type="phone" className='form-control ' onChange={(e) => setPhone_number(e.target.value)} /><br />
           <label htmlFor="">Description</label>
-          <input type="text" placeholder="Add the name you would like to be engraved" className='form-control p-4 ' onChange={(e) => setProductDescription(e.target.value)} /><br />
+          <input type="text" placeholder="Add the name you would like to be engraved" className='form-control p-4 ' onChange={(e) => setDescription(e.target.value)} /><br />
           <label htmlFor="">Product photo</label>
-          <input type="File" accept='image/*' className='form-control' onChange={(e) => setProductPhoto(e.target.files[0])} /><br />
+          <input type="File" accept='image/*' className='form-control' onChange={(e) => setPhoto(e.target.files[0])} /><br />
           <button type='submit' className=' btn btn-center text-center btn-primary text-white w-100'>Send</button><br />
 
         </form>
       </div>
       <Prefooter/>
       <Footer/>
+      <Columnfooter/>
     </div>
   )
 }

@@ -1,119 +1,82 @@
-// import axios from "axios"
-// import { useState } from "react"
-// import Footer from "./Footer"
-// import Prefooter from "./Prefooter"
 
-// const Addproduct = () => {
-//   // declare the states here 
-//   const [product_name, setProductName] = useState("")
-//   const [product_description, setProductDescription] = useState("")
-//   const [product_cost, setProductCost] = useState("")
-//   const [product_photo, setProductPhoto] = useState("")
-
-//   // define three states for posting data 
-//   const [loading, setLoading] = useState("")
-//   const [success, setSuccess] = useState("")
-//   const [error, setError] = useState("")
-
-//   // function to handle submit 
-//   const handlesubmit = async (e) => {
-//     e.preventDefault()
-//     setLoading("Please wait...")
-//     //  Create a digital envelope 
-//     const formdata = new FormData()
-//     formdata.append("product_name", product_name)
-//     formdata.append("product_description", product_description)
-//     formdata.append("product_cost", product_cost)
-//     formdata.append("product_photo", product_photo)
-
-//     try {
-//       const response = await axios.post("http://joysylviambuni.alwaysdata.net/api/addproduct", formdata)
-//       setSuccess(response.data.message)
-//       setLoading("")
-//     } catch (error) {
-//       setError(error.message)
-//       setLoading("")
-//     }
-//   }
-//   return (
-//     <div className="row justify-content-center  ">
-//       <div className="col-md-6 card card-shadow p-4" style={{backgroundColor:"lemonchiffon"}}>
-//         <h1 className='text-center'>Add products💍📿</h1>
-
-//         {/* bind the states here  */}
-
-//         <h2 className="text-warning">{loading}</h2>
-//         <h2 className="text-success">{success}</h2>
-//         <h2 className="text-danger">{error}</h2>
-
-//         <form action="" onSubmit={handlesubmit} style={{minHeight:100, }}  >
-//           <label className='text-start'>Product Name</label>
-//           <input type="text" className='form-control' onChange={(e) => setProductName(e.target.value)} /><br />
-//           <label htmlFor="">Description</label>
-//           <input type="text" className='form-control p-4 ' onChange={(e) => setProductDescription(e.target.value)} /><br />
-//           <label htmlFor="">Cost(Ksh)</label>
-//           <input type="number" className='form-control' onChange={(e) => setProductCost(e.target.value)} /><br />
-//           <label htmlFor="">Product photo</label>
-//           <input type="File" accept='image/*' className='form-control' onChange={(e) => setProductPhoto(e.target.files[0])} /><br />
-//           <button type='submit' className=' btn btn-center text-center btn-primary text-white w-100'>Add Product</button><br />
-
-//         </form>
-//       </div> <br />
-//       <Prefooter/>
-//       <Footer/>
-//     </div>
-//   )
-// }
-
-// export default Addproduct
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Prefooter from "./Prefooter";
 import { PlusCircle, Loader2 } from "lucide-react";
+import Columnfooter from "./Columnfooter";
 
 const Addproduct = () => {
   const [product_name, setProductName] = useState("");
   const [product_description, setProductDescription] = useState("");
   const [product_cost, setProductCost] = useState("");
+  const [category, setCategory] = useState("");
   const [product_photo, setProductPhoto] = useState(null);
   const [preview, setPreview] = useState(null); // For physical preview
 
   const [loading, setLoading] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-
+  
+  // Revoke object URL when preview changes/unmount to avoid memory leaks
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
+  
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files && e.target.files[0];
+    if (!file) {
+      setProductPhoto(null);
+      setPreview(null);
+      return;
+    }
     setProductPhoto(file);
     // Create a temporary URL to show the image physically before upload
-    setPreview(URL.createObjectURL(file));
+    const url = URL.createObjectURL(file);
+    setPreview(url);
   };
-
+  
   const handlesubmit = async (e) => {
     e.preventDefault();
     setLoading("Uploading product...");
     setSuccess("");
     setError("");
-
+  
     const formdata = new FormData();
     formdata.append("product_name", product_name);
     formdata.append("product_description", product_description);
     formdata.append("product_cost", product_cost);
     formdata.append("product_photo", product_photo);
-
+    formdata.append("category", category);
+  
     try {
-      const response = await axios.post("http://joysylviambuni.alwaysdata.net/api/addproduct", formdata);
-      setSuccess("Product added successfully! 💍");
+      // Ensure multipart/form-data header so server receives file correctly
+      const response = await axios.post(
+        "http://joysylviambuni.alwaysdata.net/api/addproduct",
+        formdata,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      setSuccess(response?.data?.message ?? "Product added successfully! 💍");
       setLoading("");
       // Clear form after success
-      setProductName(""); setProductDescription(""); setProductCost(""); setPreview(null);
+      setProductName("");
+      setProductDescription("");
+      setProductCost("");
+      setCategory("");
+      setProductPhoto(null);
+      if (preview) {
+        URL.revokeObjectURL(preview);
+        setPreview(null);
+      }
     } catch (error) {
-      setError("Failed to upload. Please try again.");
+      // Prefer server message when available
+      setError(error?.response?.data?.message ?? error.message ?? "Failed to upload. Please try again.");
       setLoading("");
     }
   };
-
+  
   return (
     <div className="container-fluid p-0" >
       <div className="row justify-content-center py-5 m-0" >
@@ -154,8 +117,12 @@ const Addproduct = () => {
                 )}
               </div>
             </div>
+            <div className="mb-3">
+              <label className="fw-bold mb-1" style={{ color: "teal" }}>Category </label>
+              <input type="radio" className="form-control border-0 shadow-sm " rows="2" value={category} onChange={(e) => setCategory(e.target.value)} required placeholder="Category" />
+            </div>
 
-            <button type="submit" className="btn w-100 fw-bold py-2 shadow-sm text-white" style={{ backgroundColor: "teal", borderRadius: "10px" }}>
+            <button type="submit" disabled={!!loading} className="btn w-100 fw-bold py-2 shadow-sm text-white" style={{ backgroundColor: "teal", borderRadius: "10px" }}>
               Publish Product
             </button>
           </form>
@@ -163,9 +130,11 @@ const Addproduct = () => {
       </div>
 
       <Prefooter />
+      
       <Footer />
+      <Columnfooter/>
     </div>
   );
 };
-
+  
 export default Addproduct;
