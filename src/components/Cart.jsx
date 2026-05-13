@@ -136,7 +136,7 @@ const Cart = () => {
     if (typeof val === "number") return Number.isFinite(val) ? val : 0;
     if (val == null) return 0;
 
-    const cleaned = String(val).replace(/[^0-9.\-]+/g, "");
+    const cleaned = String(val).replace(/[^0-9.-]+/g, "");
     const n = Number(cleaned);
 
     return Number.isFinite(n) ? n : 0;
