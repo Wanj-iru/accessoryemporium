@@ -113,7 +113,6 @@ const Navbar = () => {
               <button
                 className="nav-link dropdown-toggle fw-bold text-dark"
                 href=""
-                role="button"
                 data-bs-toggle="dropdown"
               >
                 Categories
