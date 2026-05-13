@@ -110,14 +110,14 @@ const Navbar = () => {
             )}
 
             <li className="nav-item dropdown">
-              <a
+              <button
                 className="nav-link dropdown-toggle fw-bold text-dark"
-                href="#"
+                href=""
                 role="button"
                 data-bs-toggle="dropdown"
               >
                 Categories
-              </a>
+              </button>
               <ul
                 className="dropdown-menu border-0 shadow-sm"
                 style={{ backgroundColor: "lemonchiffon" }}
