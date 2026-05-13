@@ -11,10 +11,10 @@ const Wishlist = () => {
   }, []);
 
   const removeItem = (id) => {
-    const updated = wishlist.filter(item => item.id !== id);
+    const updated = wishlist.filter(item => item.product_id !== id);
     setWishlist(updated);
     localStorage.setItem('wishlist', JSON.stringify(updated));
-    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new Event("authChanged"));
   };
 
   return (
@@ -32,7 +32,7 @@ const Wishlist = () => {
                   <h6 className="fw-bold" style={{ color: "teal" }}>{item.product_name}</h6>
                   <p className="fw-bold">Ksh {item.product_cost}</p>
                   <div className="d-flex gap-2">
-                    <button className="btn btn-outline-danger btn-sm" onClick={() => removeItem(item.id)}><Trash2 size={16}/></button>
+                    <button className="btn btn-outline-danger btn-sm" onClick={() => removeItem(item.product_id)}><Trash2 size={16}/></button>
                     {/* Add to Cart button logic could go here too */}
                   </div>
                 </div>

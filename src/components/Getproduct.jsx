@@ -25,6 +25,7 @@ const Getproduct = () => {
       setLoading("Fetching collection...")
       try {
         const response = await axios.get("http://joysylviambuni.alwaysdata.net/api/getproducts")
+        console.log(response.data)
         setProducts(response.data)
         setLoading("")
       } catch (err) {
@@ -38,7 +39,7 @@ const Getproduct = () => {
   // --- LOGIC: WISHLIST & CART ---
   const addToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const exists = cart.find(item => item.id === product.id);
+    const exists = cart.find(item => item.product_id === product.product_id);
     
     if (exists) {
       exists.quantity += 1;
@@ -47,14 +48,17 @@ const Getproduct = () => {
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
+    window.dispatchEvent(new Event("authChanged"));
+
     alert(`${product.product_name} added to cart!`);
   };
 
   const addToWishlist = (product) => {
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    if (!wishlist.find(item => item.id === product.id)) {
+    if (!wishlist.find(item => item.product_id === product.product_id)) {
       wishlist.push(product);
       localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      window.dispatchEvent(new Event("authChanged"));
       alert("Added to wishlist!");
     } else {
       alert("Already in wishlist!");

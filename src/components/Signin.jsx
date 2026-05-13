@@ -26,7 +26,7 @@ const Signin = () => {
     try {
       const response = await axios.post("http://joysylviambuni.alwaysdata.net/api/signin", formdata)
 
-      if (response.data) {
+      if (response.data.user) {
         // --- DATA CHECK ---
         // Log the response to see if 'username' or 'message' contains the name
         console.log("Backend Response:", response.data);
@@ -37,10 +37,12 @@ const Signin = () => {
 
         setSuccess(`Welcome back! Logging you in...`);
         setLoading("");
-        navigate("/home");
+        navigate("/");
 
         // Trigger the custom event so the Navbar updates the "Signed in as" text immediately
         // window.dispatchEvent(new Event("storage"));
+        window.dispatchEvent(new Event("authChanged"));
+
 
         // setTimeout(() => {
         // }, 1500);

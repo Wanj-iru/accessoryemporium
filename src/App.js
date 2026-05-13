@@ -1,7 +1,7 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
@@ -17,9 +17,6 @@ import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';
 import CategoryPage from './components/Categories';
 
-
-// import Customize from './components/Customize';
-// import prefooter from './components/Prefooter';
 
 function App() {
   return (
